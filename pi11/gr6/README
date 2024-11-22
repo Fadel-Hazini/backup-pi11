@@ -1,0 +1,25 @@
+== Rocky 8 Raspberry Pi Image (experimental) ==
+
+This is a minimal Rocky 8 install intended for Raspberry Pi 4 devices (architecture is aarch64).
+
+It may work on a Pi 3 , but that has not been tested.  We are looking for Rpi 3 owners to test if you'd like to try it.
+
+This image WILL NOT WORK on a Raspberry Pi 1 or 2, we are 64-bit only, and have no support for 32-bit ARM processors.  Sorry :-/.
+
+
+IMAGE NOTES / DIFFERENCES FROM STOCK ROCKY 8:
+  
+  - Based on Rocky Linux 8.4, points to production Rocky 8 aarch64 repositories
+  - Has an additional repository that contains kernel packages for Raspberry Pi
+  - Includes script that fixes the wifi.  Simple edit of a txt firmware settings file.  Will need to be run whenever linux-firmware gets upgraded
+  - Includes @minimal-install , plus a few quality of life packages like vim, bash-completion, etc.
+  - Initial User "rocky" (default password: "rockylinux").  Root password disabled, rocky user is a sudoer
+  - Partitions are 300 MB /boot , 512 MB swap, 2800 MB rootfs.  Requires a 4 GB or larger storage device to serve as your disk
+
+
+
+If you want to automatically resize your / partition, just type the following (as root user):
+sudo rootfs-expand
+
+It should fill your main rootfs partition to the end of the disk.
+
